@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from keras_segmentation.models import fcn
+from FCN_model import *
 from PFB_measurement_related import Measurement
 from random import shuffle, random
 
@@ -149,7 +149,7 @@ def cal_loss(model, images, batch_labels):
 # yilog(h(xi;??))+(1?yi)log(1?h(xi;??))
 def main():
     tf.keras.backend.clear_session()
-    model = fcn.fcn_8(n_classes=3, input_height=FLAGS.img_size, input_width=FLAGS.img_size)
+    model = FCN(input_shape=(FLAGS.img_size, FLAGS.img_size, 3), num_classes=FLAGS.total_classes)
     model.summary()
 
     for layer in model.layers:
